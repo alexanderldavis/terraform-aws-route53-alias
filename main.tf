@@ -1,7 +1,7 @@
 data "aws_route53_zone" "default" {
   count        = module.this.enabled && length(compact(var.aliases)) > 0 ? 1 : 0
-  zone_id      = var.parent_zone_id
-  name         = var.parent_zone_name
+  zone_id      = var.parent_zone_id != "" ? var.parent_zone_id : null
+  name         = var.parent_zone_name != "" ? var.parent_zone_name : null
   private_zone = var.private_zone
 }
 
